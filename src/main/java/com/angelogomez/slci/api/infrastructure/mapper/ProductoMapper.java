@@ -5,6 +5,8 @@ import com.angelogomez.slci.api.infrastructure.entity.ProductoEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductoMapper {
     private static final ModelMapper modelMapper = new ModelMapper();
@@ -20,5 +22,17 @@ public class ProductoMapper {
 
     public ProductoEntity mapToProductoEntity(Producto producto) {
         return modelMapper.map(producto, ProductoEntity.class);
+    }
+
+    public List<Producto> mapToProductos(List<ProductoEntity> productoEntityList) {
+        return productoEntityList.stream()
+                .map(this::mapToProducto)
+                .toList();
+    }
+
+    public List<ProductoEntity> mapToProductoEntities(List<Producto> productoList) {
+        return productoList.stream()
+                .map(this::mapToProductoEntity)
+                .toList();
     }
 }

@@ -1,33 +1,33 @@
 package com.angelogomez.slci.api.application;
 
 import com.angelogomez.slci.api.domain.model.Producto;
-import com.angelogomez.slci.api.infrastructure.entity.ProductoEntity;
-import com.angelogomez.slci.api.infrastructure.mapper.ProductoMapper;
-import com.angelogomez.slci.api.infrastructure.repository.ProductoInterface;
+import com.angelogomez.slci.api.domain.port.ProductoIn;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ProductoService{
 
-    private final ProductoInterface productoInterface;
-    private final ProductoMapper productoMapper;
+    private final ProductoIn productoIn;
 
-    // Metodo para crear un producto
-    // Con el void nosotros le decimos que no retorna nada
     public Producto crearProducto(Producto producto) {
-        ProductoEntity productoEntity = productoMapper.mapToProductoEntity(producto);
-        ProductoEntity newEntity = productoInterface.save(productoEntity);
-
-        // Activa notificacion en la consola
-
-        return productoMapper.mapToProducto(newEntity);
+        log.info("inicio crearProducto");
+        Producto productoCreado = productoIn.crearProducto(producto);
+        log.info("fin crearProducto");
+        return productoCreado;
     }
 
-    // El mismo metodo pero mas compacto
-    public Producto crearProductoCompacto(ProductoEntity productoEntity){
-        return productoMapper.mapToProducto(productoInterface.save(productoEntity));
+    public List<Producto> listarProductos() {
+        return productoIn.listarProductos();
     }
 
+    public String eliminarProducto(int id) {
+        productoIn.eliminarProducto(id);
+        return "Producto eliminado con éxito";
+    }
 }

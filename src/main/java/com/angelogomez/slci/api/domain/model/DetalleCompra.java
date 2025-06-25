@@ -1,4 +1,4 @@
 package com.angelogomez.slci.api.domain.model;
 
-public class DetalleCompras {
+public class DetalleCompra {
 }

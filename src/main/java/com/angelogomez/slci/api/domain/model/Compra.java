@@ -2,7 +2,7 @@ package com.angelogomez.slci.api.domain.model;
 
 import java.util.Date;
 
-public class Compras {
+public class Compra {
     private int id;
     private String codigo;
     private Date fechaCompra;
