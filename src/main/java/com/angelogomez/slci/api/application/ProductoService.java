@@ -22,6 +22,13 @@ public class ProductoService{
         return productoCreado;
     }
 
+    public Producto actualizarProducto(Producto producto) {
+        log.info("inicio crearProducto");
+        Producto productoCreado = productoIn.crearProducto(producto);
+        log.info("fin crearProducto");
+        return productoCreado;
+    }
+
     public List<Producto> listarProductos() {
         return productoIn.listarProductos();
     }

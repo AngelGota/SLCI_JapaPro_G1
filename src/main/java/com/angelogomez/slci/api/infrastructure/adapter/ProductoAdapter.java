@@ -8,6 +8,7 @@ import com.angelogomez.slci.api.infrastructure.repository.ProductoInterface;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 @Component
@@ -43,6 +44,7 @@ public class ProductoAdapter implements ProductoOut {
 
     @Override
     public Producto actualizarProducto(Producto producto) {
+        ResultSet resultSet = null;
         return null;
     }
 
